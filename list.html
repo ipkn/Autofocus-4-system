@@ -1,0 +1,47 @@
+<SCRIPT LANGUAGE="javascript">
+<!-- 
+//--></SCRIPT>
+<H1>작업 리스트</H1>
+<table>
+{% for todo in todolist %}
+	<tr>
+	<td>
+	{% if todo.backlog %}
+		<HR/>
+	{% else %}
+		{% if todo.completed %}
+		<STRIKE>
+		{% endif %}
+		{% if todo.current %}
+		<B>
+		<A HREF="current">
+		{% endif %}
+		{{ todo.text }}
+		{% if todo.current %}
+		</A>
+		</B>
+		{% endif %}
+		{% if todo.completed %}
+		</STRIKE>
+		{% endif %}
+		<span>
+		▼
+		</span>
+	{% endif %}
+	</td>
+	<td>
+	{% if todo.current %}
+	&lt;
+	{% endif %}
+	{% if todo.review %}
+	R
+	{% endif %}
+	</td>
+	</tr>
+{% endfor %}
+</table>
+<BR/>
+<A HREF="add">새 작업 추가</A><BR/>
+{% if todolist %}
+<A HREF="current">현재 작업으로</A><BR/>
+{% endif %}
